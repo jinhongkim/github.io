@@ -1,144 +1,98 @@
-# Hydeout
+## lanyon-plus
 
-Hydeout updates the original [Hyde](https://github.com/poole/hyde)
-theme for [Jekyll](http://jekyllrb.com) 3.x and adds new functionality.
+Based on Jekyll theme: [Lanyon](http://lanyon.getpoole.com) by [**Mark Otto**](https://github.com/mdo)
 
-![Desktop](/_screenshots/1.png?raw=true)
-<img alt="Mobile home page" src="/_screenshots/2.png?raw=true" width="300px" />
-<img alt="Mobile post page" src="/_screenshots/3.png?raw=true" width="300px" />
+* add-ons by [Samir Amin](http://sbamin.com)
+* [Site features](http://sbamin.com/disclosure#i-classfa-fa-thumbs-o-up-credits-for-site-featuresi) | [Example contents](https://dyndna.github.io/lanyon-plus/blog/2013/01/01/example-content/)
+* License: Open sourced under the [MIT license](https://sbamin.com/disclosure/#theme-major-credit--license).
 
-### Usage
+[![Build Status](https://travis-ci.org/dyndna/lanyon-plus.svg?branch=master)](https://travis-ci.org/dyndna/lanyon-plus)
 
-Hydeout is available as the `jekyll-theme-hydeout` Ruby Gem.
-Add `gem "jekyll-theme-hydeout", "~> 3.4"` to your Gemfile and run
-`bundle install`.
+[Demo](http://dyndna.github.io/lanyon-plus) | [Download v1.1.1](https://github.com/dyndna/lanyon-plus/releases/tag/v1.1.1)
 
-Hydeout uses pagination, so if you have an `index.md`, you'll need to swap
-it with an `index.html` that uses the `index` layout:
+### Required edits:
 
-```
----
-layout: index
-title: Home
----
-```
+#### _config.yml
 
-### Keep It Simple
+*   Edit lines where text string `foo` is present with relevant information. 
+*   Add relevant author and owner information
+    *   For proper sidebar, meta info below post title, and footer bar, add at least twitter, google plus info under `owner` and `sidebar` section.
+    *   Uncomment and add relevant user names/keys to enable features, e.g., google analytics, disqus comments, twitter widget, google custom search.
 
-In keeping with the original Hyde theme, Hydeout aims to keep the overall
-design lightweight and plugin-free. JavaScript is currently limited only
-to Disqus and Google Analytics (and is only loaded if you provide configuration
-variables).
+#### CNAME
 
-Hydeout makes heavy use of Flexbox in its CSS. If Flexbox is not available,
-the CSS degrades into a single column layout.
+*   Read [Using a custom domain with GitHub Pages](https://help.github.com/articles/using-a-custom-domain-with-github-pages/) for set-up details.
+*   If you are hosting website on domain other than `github.io`, rename `CNAME.sample` file to `CNAME`, and add your custom domain name, e.g., `example.com` (only one domain is allowed), otherwise remove `CNAME` file if you want to host at default `github.io`. 
+*   If you are hosting website on `github.io`, replace `example.com` with `https://<github-username>.github.io/<repository_name>` (for project site) or `https://<github-username>.github.io` (for user site) under `site.url` and `site.urlimg` in `_config.yml` and `_prose.yml` file.
 
-### Customization
+#### .travis.yml
+*   See more at [https://travis-ci.org/getting_started](https://travis-ci.org/getting_started)
 
-Hydeout replaces Hyde's class-based theming with the use
-of the following SASS variables:
+#### _prose.yml
 
-```scss
-$sidebar-bg-color: #202020 !default;
-$sidebar-sticky: true !default;
-$layout-reverse: false !default;
-$link-color: #268bd2 !default;
-```
+*   [https://github.com/prose/prose/wiki/Getting-Started](https://github.com/prose/prose/wiki/Getting-Started)
+*   Edit `example.com` with your domain name.
+*   You may edit names for custom categories.
 
-To override these variables, create your own `assets/css/main.scss` file.
-Define your own variables, then import in Hydeout's SCSS, like so:
+#### robots.txt
 
-```scss
----
-# Jekyll needs front matter for SCSS files
----
+* replace `example.com` with your valid url.
+* Edit search engine inclusion/exclusion if desired.
 
-$sidebar-bg-color: #ac4142;
-$link-color: #ac4142;
-$sidebar-sticky: false;
-@import "hydeout";
-```
+#### page specific edits
 
-See the [_variables](_sass/hydeout/_variables.scss) file for other variables
-you can override.
+*   `_data/socialmedia.html`
+    *   Replace user `foo` with appropriate username
 
-You can see the full set of partials you can replace in the
-[`_includes`](_includes) folder, but there are a few worth noting:
+*   `_includes/`
+    *   Check if file paths for appropriate urls have valid css files, scripts, icons, and images in `head.html` and `head_minimal.html`, else comment html tags which are not being used.
+    *   Also, check if variables (twitter, google plus, linkedin, google analytics key and disqus username, etc.) are specified in `_config.yml` located under root path.
+    *   You may edit `meta_info.html`, `footer.html` and similar include files to add/remove elements in page meta bar, footer, etc.
+    *   For publications page, `mypubs.html` and `myaoi.html` are trimmed outputs from [zot_bib_web](https://github.com/davidswelt/zot_bib_web). Github pages can not dynamically build these pages. Alternately, you may export `bib` format for publications under `/files/` directory which can be parsed dynamically using [bibbase.org](http://bibbase.org)
+    *   `_includes/footer.html`: Edit copyright information as needed.
+*   `_layouts`
+    *   To add/remove/reorder page/post contents, edit `default.html` plus `page.html` or `post.html`.
+*   `_posts`
+    *   Live blog posts goes here with markdown formatted post. File name format must have following date-title format `yyyy-mm-dd-title.md` for jekyll to render blog post correctly. 
+    *   YAML sample header shows all available options. Minimal required elements are: layout, title and date. Date tag overrides date given in post file name.
+*   `blog/index.html`
+    *   Edit blog title and description.
+*   `images/`
+    *   Under `icons` directory, keep appropriate sized favicons and thumbnails as specified in `_includes/head.html` and `_includes/head_minimal.html`
+    *   Also, keep `favicon.png` and `favicon.ico` in root directory.
+    *   Final, `images/icons/` should have following images with exact filenames and image size as specified in respective filenames. These images can be generated using online *favicon generator*. Replace `foo` with your site title or other name if desired.
 
-* `_includes/copyright.html` - Insert your own copyright here.
+~~~
+example.com/images/icons/apple-touch-icon-precomposed.png
+example.com/images/icons/apple-touch-icon-72x72-precomposed.png
+example.com/images/icons/apple-touch-icon-114x114-precomposed.png
+example.com/images/icons/apple-touch-icon-144x144-precomposed.png
+example.com/images/icons/apple-touch-icon-180x180.png
+example.com/images/icons/android-icon-192x192.png
+~~~
 
-* `_includes/custom-head.html` - Insert custom head tags (e.g. to load your
-  own stylesheets)
+*   `pages/about.md`
+    *   YAML variable `imagefeature` shoud have image path relative to `images/` directory, i.e., `foo.png` will link to `example.com/images/foo.png`
+    *   Specify `site.owner.avatar` and `site.owner.twitter` along with other variables in `_config.yml`
+*   `syspages/`:
+    *   Edit page title and description in YAML front matter.
+    *   For web search to work, specify [Google Custom Search Engine](https://cse.google.com) API key for `google_search` variable.
+    *   Tag generation is experimental and dynamic size for tag box may need to be adjusted if you have more than 100 posts with one or two frequently occurring tags. 
+    *   All `{% for ... %}...{% endfor %}` loop operations will increase site build time, and remove such features (tags, meta info, related posts, etc.) under `_includes`, `_layouts` and `syspages` if required.
+*   `pages/contact.md`
+    *   Edit page title and description.
+    *   Edit address, driving direction url, etc.
+*   `pages/cv.md`
+    *   Edit `_config.yml` to add twitter, google plus, linkedin, google scholar, ORCID profile info under owner heading.   
+    *   Add pdf at `{{ site.url }}/cv/cv.pdf` 
+*   `pages/publications.md`
+    *   Add your publications at `/files/mypubs.bib` and `_includes/mypubs.html`. See above under `_includes` for more.
+*   `pages/disclosure.md`
+    *   Appreciated if you keep relevant credits in disclosure page.
+*   `humans.txt`
+    *   Replace `foo` with your name.
+*   `rfeed.xml`
+    *   Not required unless you are cross-posting about R language on blog aggregation site(s).
 
-* `_includes/custom-foot.html` - Insert custom elements at the end of the
-  body (e.g. for custom JS)
+END
 
-* `_includes/custom-nav-links.html` - Additional nav links to insert at the
-  end of the list of links in the sidebar.
-
-  Pro-tip: The `nav`s in the sidebar are flexboxes. Use the `order` property
-  to order your links.
-
-* `_includes/custom-icon-links.html`- Additional icon links to insert at the
-  end of the icon links at the bottom of the sidebar. You can use the `order`
-  property to re-order.
-
-* `_includes/favicons.html` - Replace references to `favicon.ico` and
-  `favicon.png` with your own favicons references.
-
-* `_includes/font-includes.html` - The Abril Fatface font used for the site
-  title is loaded here. If you're overriding that font in the CSS, be sure
-  to also remove the font load reference here.
-
-### New Features
-
-* Hydeout adds a new tags page (accessible in the sidebar). Just create a
-  new page with the tags layout:
-
-  ```
-  ---
-  layout: tags
-  title: Tags
-  ---
-  ```
-
-* Hydeout adds a new "category" layout for dedicated category pages.
-  Category pages are automatically added to the sidebar. All other pages
-  must have `sidebar_link: true` in their front matter to show up in
-  the sidebar. To create a category page, use the `category` layout"
-
-  ```
-  ---
-  layout: category
-  title: My Category
-  ---
-
-  Description of "My Category"
-  ```
-
-* A simple redirect-to-Google search is available. Just create a page with
-  the `search` layout.
-
-  ```
-  ---
-  layout: search
-  title: Google Search
-  ---
-  ```
-
-* Disqus integration is ready out of the box. Just add the following to
-  your config file:
-
-  ```yaml
-  disqus:
-    shortname: my-disqus-shortname
-  ```
-
-  If you don't want Disqus or want to use something else, override
-  `comments.html`.
-
-* For Google Analytics support, define a `google_analytics` variable with
-  your property ID in your config file.
-
-There's also a bunch of minor tweaks and adjustments throughout the
-theme. Hope this works for you!

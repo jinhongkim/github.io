@@ -39,11 +39,6 @@ validation-report.json
 
 # Folders to ignore
 node_modules
-.sass-cache
+bower_components
 
-# Dev stuff
-Makefile
 Gemfile.lock
-_config.dev.yml
-.vscode
-*.gem
