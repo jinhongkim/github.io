@@ -1,22 +1,7 @@
-# Auto detect text files and perform LF normalization
-* text=auto
-
-# Custom for Visual Studio
-*.cs     diff=csharp
-*.sln    merge=union
-*.csproj merge=union
-*.vbproj merge=union
-*.fsproj merge=union
-*.dbproj merge=union
-
-# Standard to msysgit
-*.doc	 diff=astextplain
-*.DOC	 diff=astextplain
-*.docx diff=astextplain
-*.DOCX diff=astextplain
-*.dot  diff=astextplain
-*.DOT  diff=astextplain
-*.pdf  diff=astextplain
-*.PDF	 diff=astextplain
-*.rtf	 diff=astextplain
-*.RTF	 diff=astextplain
+assets/js/lunr/* linguist-vendored
+assets/js/plugins/* linguist-vendored
+assets/js/vendor/* linguist-vendored
+assets/fonts/* linguist-vendored
+assets/js/main.min.js linguist-vendored
+_sass/so-simple/vendor/* linguist-vendored
+_sass/so-simple/functions/* linguist-vendored
